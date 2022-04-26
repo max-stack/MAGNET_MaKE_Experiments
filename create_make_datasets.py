@@ -1,21 +1,20 @@
+# @Author Max Wilson-Hebben
+
+# Program used to Chinese MaKE train, test and valid sets in a format ready for MWP solver models.
+
+# Segmentation was required as well as solving the simultaneous equations since answers aren't - 
+# given in the data.
+
 import sympy as sym
 import re
 import ast
 import operator as op
 import json
 import jieba
-
-TRAIN_EQUATION1_PATH = "train_equation1.txt"
-TRAIN_EQUATION2_PATH = "train_equation2.txt"
-TRAIN_ORIGINAL_TEXT_PATH = "train_original_text.txt"
-
-TEST_EQUATION1_PATH = "test_equation1.txt"
-TEST_EQUATION2_PATH = "test_equation2.txt"
-TEST_ORIGINAL_TEXT_PATH = "test_original_text.txt"
-
-VALID_EQUATION1_PATH = "valid_equation1.txt"
-VALID_EQUATION2_PATH = "valid_equation2.txt"
-VALID_ORIGINAL_TEXT_PATH = "valid_original_text.txt"
+from program_constants import TRAIN_EQUATION1_PATH, TRAIN_EQUATION2_PATH, TRAIN_ORIGINAL_TEXT_PATH
+from program_constants import TEST_EQUATION1_PATH, TEST_EQUATION2_PATH, TEST_ORIGINAL_TEXT_PATH
+from program_constants import VALID_EQUATION1_PATH, VALID_EQUATION2_PATH, VALID_ORIGINAL_TEXT_PATH
+from program_constants import MAKE_PROCESSED_TRAINSET, MAKE_PROCESSED_TESTSET, MAKE_PROCESSED_VALIDSET
 
 operators = {ast.Add: op.add, ast.Sub: op.sub, ast.Mult: op.mul,
              ast.Div: op.truediv, ast.Pow: op.pow, ast.BitXor: op.xor,
@@ -28,7 +27,6 @@ class Create_Make_Datasets:
         self.original_text_path = original_text_path
         self.dataset_path = dataset_path
         self.answers_path = answers_path
-
 
     def create_equations(self):
         equations = []
@@ -68,6 +66,7 @@ class Create_Make_Datasets:
 
         return original_text
 
+    # Segmenting text puts spaces between words (jieba used for Chinese)
     def create_segmented_text(self, original_text):
         segmented_text = []
         for problem in original_text:
@@ -76,6 +75,7 @@ class Create_Make_Datasets:
 
         return segmented_text
 
+    # Used to solve simultaneous equations and find an answer
     def generate_answers(self, equations):
         answers = []
         for equation_set in equations:
@@ -127,15 +127,15 @@ class Create_Make_Datasets:
         return answers
 
     def evaluate_answer(self, expression):
-        return self.eval_(ast.parse(expression, mode='eval').body)
+        return self.eval(ast.parse(expression, mode='eval').body)
 
-    def eval_(self, node):
-        if isinstance(node, ast.Num):  # <number>
+    def eval(self, node):
+        if isinstance(node, ast.Num): 
             return node.n
-        elif isinstance(node, ast.BinOp):  # <left> <operator> <right>
-            return operators[type(node.op)](self.eval_(node.left), self.eval_(node.right))
-        elif isinstance(node, ast.UnaryOp):  # <operator> <operand> e.g., -1
-            return operators[type(node.op)](self.eval_(node.operand))
+        elif isinstance(node, ast.BinOp): 
+            return operators[type(node.op)](self.eval(node.left), self.eval(node.right))
+        elif isinstance(node, ast.UnaryOp): 
+            return operators[type(node.op)](self.eval(node.operand))
         else:
             raise TypeError(node)
 
@@ -165,10 +165,10 @@ class Create_Make_Datasets:
 
 
 
-train = Create_Make_Datasets(TRAIN_EQUATION1_PATH, TRAIN_EQUATION2_PATH, TRAIN_ORIGINAL_TEXT_PATH, "trainset.json")
-test = Create_Make_Datasets(TEST_EQUATION1_PATH, TEST_EQUATION2_PATH, TEST_ORIGINAL_TEXT_PATH, "testset.json")
-valid = Create_Make_Datasets(VALID_EQUATION1_PATH, VALID_EQUATION2_PATH, VALID_ORIGINAL_TEXT_PATH, "validset.json")
-# remove id=160 Valid datatset problem because it breaks solver - has no numbers
+train = Create_Make_Datasets(TRAIN_EQUATION1_PATH, TRAIN_EQUATION2_PATH, TRAIN_ORIGINAL_TEXT_PATH, MAKE_PROCESSED_TRAINSET)
+test = Create_Make_Datasets(TEST_EQUATION1_PATH, TEST_EQUATION2_PATH, TEST_ORIGINAL_TEXT_PATH, MAKE_PROCESSED_TESTSET)
+valid = Create_Make_Datasets(VALID_EQUATION1_PATH, VALID_EQUATION2_PATH, VALID_ORIGINAL_TEXT_PATH, MAKE_PROCESSED_VALIDSET)
+# remove id=160 Valid datatset problem - has no numbers
 
 train.create_dataset()
 test.create_dataset()
