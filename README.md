@@ -1,1 +1,1 @@
-# MAGNET_MaKE_Eexperiments
+# MAGNET_MaKE_Experiments
