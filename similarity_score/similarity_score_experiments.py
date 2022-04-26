@@ -3,6 +3,8 @@
 # A group of experiments used to generate data for the paper, using metrics and similarity score.
 
 from similarity_score import Similarity_Ratio
+import sys
+sys.path.insert(0, '../')
 from program_constants import MAKE_PROCESSED_TRAINSET, MAKE_PROCESSED_TESTSET, MAKE_PROCESSED_VALIDSET
 from program_constants import MAKE_GENERATED_TESTSET
 from rouge_score import rouge_scorer

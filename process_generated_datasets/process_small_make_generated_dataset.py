@@ -6,6 +6,8 @@
 import torch
 import json
 import jieba
+import sys
+sys.path.insert(0, '../')
 from program_constants import MAKE_GENERATED_OUTPUT, MAKE_PROCESSED_TESTSET
 
 def process_make_generated_dataset(input_path, reference_set_path):

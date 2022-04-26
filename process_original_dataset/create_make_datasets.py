@@ -11,6 +11,8 @@ import ast
 import operator as op
 import json
 import jieba
+import sys
+sys.path.insert(0, '../')
 from program_constants import TRAIN_EQUATION1_PATH, TRAIN_EQUATION2_PATH, TRAIN_ORIGINAL_TEXT_PATH
 from program_constants import TEST_EQUATION1_PATH, TEST_EQUATION2_PATH, TEST_ORIGINAL_TEXT_PATH
 from program_constants import VALID_EQUATION1_PATH, VALID_EQUATION2_PATH, VALID_ORIGINAL_TEXT_PATH

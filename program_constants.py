@@ -2,24 +2,24 @@
 
 # file path constants for use in programs
 
-MAKE_GENERATED_OUTPUT = "MaKE_wo_plan_res.pt"
+MAKE_GENERATED_OUTPUT = "../generated_datasets/MaKE_wo_plan_res.pt"
 
-MAKE_PROCESSED_TRAINSET = "trainset.json"
-MAKE_PROCESSED_TESTSET = "testset.json"
-MAKE_PROCESSED_VALIDSET = "validset.json"
+MAKE_PROCESSED_TRAINSET = "../original_datasets/trainset.json"
+MAKE_PROCESSED_TESTSET = "../original_datasets/testset.json"
+MAKE_PROCESSED_VALIDSET = "../original_datasets/validset.json"
 
-MAKE_GENERATED_TESTSET = "final_testset.json"
+MAKE_GENERATED_TESTSET = "../generated_datasets/final_testset.json"
 
-RANDOM_SUBSET = "random_subset.json"
+RANDOM_SUBSET = "../generated_datasets/random_subset.json"
 
-TRAIN_EQUATION1_PATH = "train_equation1.txt"
-TRAIN_EQUATION2_PATH = "train_equation2.txt"
-TRAIN_ORIGINAL_TEXT_PATH = "train_original_text.txt"
+TRAIN_EQUATION1_PATH = "../original_datasets/train_equation1.txt"
+TRAIN_EQUATION2_PATH = "../original_datasets/train_equation2.txt"
+TRAIN_ORIGINAL_TEXT_PATH = "../original_datasets/train_original_text.txt"
 
-TEST_EQUATION1_PATH = "test_equation1.txt"
-TEST_EQUATION2_PATH = "test_equation2.txt"
+TEST_EQUATION1_PATH = "../original_datasets/test_equation1.txt"
+TEST_EQUATION2_PATH = "../original_datasets/test_equation2.txt"
 TEST_ORIGINAL_TEXT_PATH = "test_original_text.txt"
 
-VALID_EQUATION1_PATH = "valid_equation1.txt"
-VALID_EQUATION2_PATH = "valid_equation2.txt"
-VALID_ORIGINAL_TEXT_PATH = "valid_original_text.txt"
+VALID_EQUATION1_PATH = "../original_datasets/valid_equation1.txt"
+VALID_EQUATION2_PATH = "../original_datasets/valid_equation2.txt"
+VALID_ORIGINAL_TEXT_PATH = "../original_datasets/valid_original_text.txt"

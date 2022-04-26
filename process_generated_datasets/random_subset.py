@@ -4,6 +4,8 @@
 
 from random import seed, sample
 import json
+import sys
+sys.path.insert(0, '../')
 from program_constants import MAKE_GENERATED_TESTSET, RANDOM_SUBSET
 
 
