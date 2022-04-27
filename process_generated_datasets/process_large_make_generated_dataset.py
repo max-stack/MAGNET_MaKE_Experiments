@@ -8,7 +8,7 @@ import json
 import jieba
 import sys
 sys.path.insert(0, '../')
-from program_constants import MAKE_GENERATED_OUTPUT, MAKE_PROCESSED_TESTSET
+from program_constants import MAKE_GENERATED_OUTPUT, MAKE_PROCESSED_TRAINSET
 
 
 def process_make_generated_dataset(input_path, reference_set_path):
@@ -39,4 +39,4 @@ def process_make_generated_dataset(input_path, reference_set_path):
     # remove id=55 - question that has no numbers
 
 
-process_make_generated_dataset(MAKE_GENERATED_OUTPUT, MAKE_PROCESSED_TESTSET)
+process_make_generated_dataset(MAKE_GENERATED_OUTPUT, MAKE_PROCESSED_TRAINSET)
